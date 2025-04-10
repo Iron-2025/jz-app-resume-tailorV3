@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Tailor - Your Tailored Resume</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/thumb_square_800x800.avif') }}" type="image/avif">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <style>
+        /* Markdown styling */
+        .markdown-content h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+        .markdown-content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #1e40af;
+        }
+        .markdown-content h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e40af;
+        }
+        .markdown-content p {
+            margin-bottom: 0.75rem;
+        }
+        .markdown-content ul, .markdown-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .markdown-content ul {
+            list-style-type: disc;
+        }
+        .markdown-content ol {
+            list-style-type: decimal;
+        }
+        .markdown-content li {
+            margin-bottom: 0.25rem;
+        }
+        .markdown-content a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        .markdown-content strong {
+            font-weight: bold;
+        }
+        .markdown-content em {
+            font-style: italic;
+        }
+        .markdown-content blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1rem;
+            margin-left: 0;
+            margin-right: 0;
+            font-style: italic;
+            color: #4b5563;
+        }
+        .markdown-content code {
+            background-color: #f3f4f6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+        .markdown-content pre {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        .markdown-content hr {
+            border: 0;
+            border-top: 1px solid #e5e7eb;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <a href="{{ url_for('index') }}" class="text-2xl font-bold text-gray-800">Resume Tailor</a>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="{{ url_for('dashboard') }}" class="text-blue-600 hover:text-blue-800 transition font-medium">Create Another</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Your Tailored Resume</h1>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 md:p-8 max-w-4xl mx-auto mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800">Preview</h2>
+                    <div class="flex space-x-4">
+                        <button id="toggle-preview" class="text-blue-600 hover:text-blue-800 transition flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Show Markdown
+                        </button>
+                        <button id="copy-markdown" class="text-blue-600 hover:text-blue-800 transition flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                            </svg>
+                            Copy Markdown
+                        </button>
+                        <button id="download-markdown" class="text-blue-600 hover:text-blue-800 transition flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download
+                        </button>
+                        <button id="export-pdf" class="text-blue-600 hover:text-blue-800 transition flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            
+            <div class="markdown-content prose max-w-none">
+                {{ tailored_resume_html|safe }}
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 md:p-8 max-w-4xl mx-auto" style="display: none;">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Markdown Source</h2>
+            <pre id="markdown-source" class="bg-gray-100 p-4 rounded-md overflow-x-auto text-sm font-mono">{{ tailored_resume_markdown }}</pre>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Resume Tailor</h2>
+                    <p class="text-gray-400">© 2025 Resume Tailor. All rights reserved.</p>
+                </div>
+                <div>
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Copy Markdown button
+            const copyButton = document.getElementById('copy-markdown');
+            const markdownSource = document.getElementById('markdown-source');
+            
+            copyButton.addEventListener('click', function() {
+                const textToCopy = markdownSource.textContent;
+                copyToClipboard(textToCopy, this);
+            });
+            
+            // Download Markdown button
+            const downloadButton = document.getElementById('download-markdown');
+            
+            downloadButton.addEventListener('click', function() {
+                const markdownContent = markdownSource.textContent;
+                const blob = new Blob([markdownContent], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tailored_resume.md';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+</body>
+</html>

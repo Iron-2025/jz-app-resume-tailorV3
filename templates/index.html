@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Tailor - Customize Your Resume for Job Applications</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/thumb_square_800x800.avif') }}" type="image/avif">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-800">Resume Tailor</h1>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="#features" class="text-gray-600 hover:text-blue-600 transition">Features</a></li>
+                        <li><a href="#how-it-works" class="text-gray-600 hover:text-blue-600 transition">How It Works</a></li>
+                        <li><a href="{{ url_for('dashboard') }}" class="text-blue-600 hover:text-blue-800 transition font-medium">Get Started</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-16 md:py-24 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Tailor Your Resume to Land Your Dream Job</h2>
+                        <p class="text-xl mb-8">Our AI-powered tool helps you customize your resume to match job descriptions, increasing your chances of getting interviews.</p>
+                        <a href="{{ url_for('dashboard') }}" class="inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
+                            Start Now
+                        </a>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12">
+                        <!-- Inline SVG Resume Illustration -->
+                        <svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-md mx-auto">
+                            <!-- Background -->
+                            <rect x="50" y="20" width="400" height="360" rx="10" fill="#f0f4f8" stroke="#d1dce5" stroke-width="2"/>
+                            
+                            <!-- Header section -->
+                            <rect x="80" y="50" width="340" height="60" rx="5" fill="#e2e8f0"/>
+                            <circle cx="120" cy="80" r="20" fill="#a0aec0"/>
+                            <rect x="160" y="65" width="180" height="10" rx="2" fill="#a0aec0"/>
+                            <rect x="160" y="85" width="120" height="8" rx="2" fill="#a0aec0"/>
+                            
+                            <!-- Content sections -->
+                            <rect x="80" y="130" width="340" height="40" rx="5" fill="#e2e8f0"/>
+                            <rect x="90" y="140" width="100" height="10" rx="2" fill="#a0aec0"/>
+                            <rect x="90" y="155" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            
+                            <!-- Experience section -->
+                            <rect x="80" y="180" width="340" height="70" rx="5" fill="#e2e8f0"/>
+                            <rect x="90" y="190" width="80" height="10" rx="2" fill="#a0aec0"/>
+                            <rect x="90" y="205" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            <rect x="90" y="215" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            <rect x="90" y="225" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            <rect x="90" y="235" width="200" height="5" rx="2" fill="#cbd5e0"/>
+                            
+                            <!-- Skills section -->
+                            <rect x="80" y="260" width="340" height="70" rx="5" fill="#e2e8f0"/>
+                            <rect x="90" y="270" width="120" height="10" rx="2" fill="#a0aec0"/>
+                            <rect x="90" y="285" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            <rect x="90" y="295" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            <rect x="90" y="305" width="320" height="5" rx="2" fill="#cbd5e0"/>
+                            <rect x="90" y="315" width="150" height="5" rx="2" fill="#cbd5e0"/>
+                            
+                            <!-- Highlight elements -->
+                            <rect x="400" y="50" width="30" height="30" rx="5" fill="#3b82f6" opacity="0.7"/>
+                            <rect x="400" y="180" width="30" height="30" rx="5" fill="#3b82f6" opacity="0.7"/>
+                            <rect x="400" y="260" width="30" height="30" rx="5" fill="#3b82f6" opacity="0.7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Use Resume Tailor?</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">Save Time</h3>
+                        <p class="text-gray-600">Quickly tailor your resume for each job application without spending hours manually editing.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">Match Skills to Requirements</h3>
+                        <p class="text-gray-600">Highlight your most relevant skills and experiences that align with the job description.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">Easy and Fast</h3>
+                        <p class="text-gray-600">Simple interface that makes customizing your resume quick and hassle-free.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">How It Works</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <span class="text-2xl font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">Upload Your Resume</h3>
+                        <p class="text-gray-600">Upload your existing resume in PDF or TXT format, or paste the content directly.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <span class="text-2xl font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">Add Job Description</h3>
+                        <p class="text-gray-600">Upload or paste the job description you're applying for.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-blue-100 text-blue-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <span class="text-2xl font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">Get Tailored Resume</h3>
+                        <p class="text-gray-600">Receive a customized version of your resume optimized for the specific job.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="{{ url_for('dashboard') }}" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition transform hover:scale-105">
+                        Start Tailoring Your Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold">Resume Tailor</h2>
+                    <p class="text-gray-400">© 2025 Resume Tailor. All rights reserved.</p>
+                </div>
+                <div>
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

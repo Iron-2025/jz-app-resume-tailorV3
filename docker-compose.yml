@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  resume-tailor:
+    build: .
+    container_name: resume-tailor
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./.env:/app/.env
+    restart: unless-stopped
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+    networks:
+      - resume-tailor-network
+
+networks:
+  resume-tailor-network:
+    driver: bridge
