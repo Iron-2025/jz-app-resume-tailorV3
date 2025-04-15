@@ -83,17 +83,17 @@ def tailor_resume(resume_text, job_description):
         flash(f"Error tailoring resume: {str(e)}")
         return None
 
-@app.route('/')
+@app.route('/tools/resume-tailor')
 def index():
     """Render the landing page"""
     return render_template('index.html')
 
-@app.route('/dashboard')
+@app.route('/tools/resume-tailor/dashboard')
 def dashboard():
     """Render the resume tailoring tool page"""
     return render_template('tool.html')
 
-@app.route('/process', methods=['POST'])
+@app.route('/tools/resume-tailor/process', methods=['POST'])
 def process():
     """Process the resume and job description"""
     # Check if the post request has any files or text
@@ -172,13 +172,13 @@ def process():
                           tailored_resume_markdown=tailored_resume_markdown,
                           tailored_resume_html=tailored_resume_html)
 
-@app.route('/export-pdf', methods=['POST'])
+@app.route('/tools/resume-tailor/export-pdf', methods=['POST'])
 def export_pdf():
     """Export the tailored resume as PDF"""
     # This would be implemented with a PDF generation library
     # For now, we'll just redirect back to the result page
     flash('PDF export functionality coming soon!')
-    return redirect(url_for('result'))
+    return redirect(url_for('process'))
 
 if __name__ == '__main__':
     # In Docker, we need to listen on 0.0.0.0
